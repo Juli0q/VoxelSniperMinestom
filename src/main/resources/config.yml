@@ -1,0 +1,23 @@
+# VoxelSniper on Minestom. Extracted into extensions/voxelsniper/ on first start.
+#
+# undo-cache-size is additionally forced to 0 programmatically by MinestomVoxelSniper regardless of
+# which config.yml a duplicate-resource collision serves at runtime - see that class for why.
+#
+# 0 on purpose. The build server has ONE history, fed by every write path, and its /undo is what
+# reverses a snipe. VoxelSniper's own undo would know only about VoxelSniper's writes, and retaining
+# it costs a full copy of every edit a builder has made this session for a command nothing exposes.
+undo-cache-size: 0
+
+# The largest brush radius a builder may set. The real limit is EditTarget.maxBlocks(), which the
+# guard enforces; this only decides whether an oversized brush is refused early or late.
+max-brush-size: 20
+
+message-on-login-enabled: false
+default-brush: snipe
+
+# Bukkit-only integrations. There is no PlotSquared or WorldGuard on a Minestom build node.
+plotsquared-integration-enabled: false
+worldguard-integration-enabled: false
+
+# Never phone home from a build node.
+update-checker-enabled: false
